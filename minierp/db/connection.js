@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
-require('dotenv').config();
+require('dotenv').config(); // Carga las variables del archivo .env
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root', // Cambia según tu config
-    password: '', // Cambia según tu config
-    database: 'minierp_db',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10
 });

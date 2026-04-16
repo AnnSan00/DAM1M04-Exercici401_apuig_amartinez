@@ -15,6 +15,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+
 // 4. Iniciar el servidor
 const PORT = 3000;
 app.listen(PORT, '0.0.0.0', () => {
