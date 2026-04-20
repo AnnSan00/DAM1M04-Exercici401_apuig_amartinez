@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>Historial de Vendes</h2>
+
+    <div class="header-actions">
+        <form action="/vendes" method="GET" class="search-form">
+            <input type="text" name="cerca" placeholder="Cerca per client..." value="{{cerca}}">
+            <button type="submit" class="btn">Buscar</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Client</th>
+                <th>Mètode de Pagament</th>
+                <th>Total</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each vendes}}
+            <tr>
+                <td>{{this.sale_date}}</td>
+                <td>{{this.customer_name}}</td>
+                <td>{{this.payment_method}}</td>
+                <td>{{this.total}} €</td>
+                <td>
+                    <a href="/vendaDetall?id={{this.id}}" class="btn">Veure Detall</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {{#if showPrev}}
+            <a href="/vendes?pagina={{prevPage}}&cerca={{cerca}}" class="btn">Anterior</a>
+        {{/if}}
+        <span class="page-info">Pàgina {{currentPage}}</span>
+        {{#if showNext}}
+            <a href="/vendes?pagina={{nextPage}}&cerca={{cerca}}" class="btn">Següent</a>
+        {{/if}}
+    </div>
+</div>

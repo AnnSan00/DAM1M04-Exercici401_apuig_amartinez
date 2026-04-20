@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>Gestió de Clients</h2>
+
+    <div class="header-actions">
+        <form action="/clients" method="GET" class="search-form">
+            <input type="text" name="cerca" placeholder="Nom o email..." value="{{cerca}}">
+            <label>
+                <input type="checkbox" name="vip" value="true" {{#if isVip}}checked{{/if}}> Només VIP
+            </label>
+            <button type="submit" class="btn">Filtrar</button>
+        </form>
+        <a href="/clientAfegir" class="btn">Afegir Client</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Telèfon</th>
+                <th># Compres</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clients}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.num_compres}}</td>
+                <td>
+                    <a href="/clientFitxa?id={{this.id}}" class="btn">Fitxa</a>
+                    <a href="/clientEditar?id={{this.id}}" class="btn">Editar</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <a href="/clients?pagina={{prevPage}}&cerca={{cerca}}" class="btn">Anterior</a>
+        <a href="/clients?pagina={{nextPage}}&cerca={{cerca}}" class="btn">Següent</a>
+    </div>
+</div>

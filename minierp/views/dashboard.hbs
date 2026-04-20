@@ -1,0 +1,14 @@
+<div class="tabs">
+    <button onclick="showTab('kpi')">KPI</button>
+    <button onclick="showTab('llistats')">Llistats</button>
+</div>
+
+<div id="kpi-section" class="tab-content">
+    <h3>Resum Executiu</h3>
+    <button id="toggleLayout">Tauler Compacte / Complet</button>
+    
+    <div id="dashboardGrid" class="grid-complet">
+        <div class="card">Vendes avui: {{vendesAvui}}€</div>
+        <div class="card">Stock baix: {{productesBaixos}}</div>
+        </div>
+</div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniERP - Backoffice</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-theme="light">
+
+    {{> header}}
+    
+    {{> menu}}
+
+    <div class="container">
+        <div class="theme-controls">
+            <label for="theme-selector">Tema:</label>
+            <select id="theme-selector">
+                <option value="light">Clar</option>
+                <option value="soft-dark">Nit suau</option>
+                <option value="high-contrast">Alt contrast</option>
+            </select>
+        </div>
+
+        <main>
+            {{{body}}}
+        </main>
+    </div>
+
+    {{> footer}}
+
+    <script src="/js/themes.js"></script>
+    <script src="/js/validations.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
