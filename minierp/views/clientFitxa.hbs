@@ -1,50 +1,43 @@
-<div class="container">
-    <div class="header-actions">
-        <h2>Fitxa del Client: {{client.name}}</h2>
-        <a href="/clients" class="btn btn-toggle">Tornar al llistat</a>
+<header class="page-header">
+    <h1>Fitxa del Client: {{client.name}}</h1>
+    <a href="/clientEditar?id={{client.id}}" class="btn">Editar Dades</a>
+</header>
+
+<div class="grid-2-cols">
+    {{!-- Dades personals --}}
+    <div class="card">
+        <h3>Dades de Contacte</h3>
+        <p><strong>📧 Email:</strong> {{client.email}}</p>
+        <p><strong>📞 Telèfon:</strong> {{client.phone}}</p>
+        <p><strong>⭐ Categoria:</strong> {{#if client.vip}}VIP{{else}}Estàndard{{/if}}</p>
     </div>
 
-    <div class="dashboard-grid full">
-        <div class="card">
-            <h4>Dades de Contacte</h4>
-            <p><strong>Email:</strong> {{client.email}}</p>
-            <p><strong>Telèfon:</strong> {{client.phone}}</p>
-            <p><strong>Client des de:</strong> {{client.created_at}}</p>
-        </div>
-        <div class="card">
-            <h4>Resum Econòmic</h4>
-            <p><strong>Total gastat:</strong> {{totalGastat}} €</p>
-            <p><strong>Ticket mitjà:</strong> {{ticketMitja}} €</p>
-            <p><strong>Número de compres:</strong> {{numCompres}}</p>
-        </div>
+    {{!-- Resum de compres --}}
+    <div class="card">
+        <h3>Resum Econòmic</h3>
+        <p class="kpi-value">{{totalGastat}}€</p>
+        <p>Total gastat acumulat</p>
     </div>
+</div>
 
-    <hr>
-
-    <h3>Historial de Compres (Últimes 10)</h3>
-    <table>
+<div class="card mt-20">
+    <h3>Historial d'últimes 10 vendes</h3>
+    <table class="main-table">
         <thead>
             <tr>
                 <th>Data</th>
-                <th>ID Venda</th>
                 <th>Total</th>
                 <th>Accions</th>
             </tr>
         </thead>
         <tbody>
-            {{#each historial}}
+            {{#each compres}}
             <tr>
                 <td>{{this.sale_date}}</td>
-                <td>#{{this.id}}</td>
-                <td>{{this.total}} €</td>
-                <td><a href="/vendaDetall?id={{this.id}}" class="btn">Veure</a></td>
+                <td>{{this.total}}€</td>
+                <td><button class="btn-sm">Veure Ticket</button></td>
             </tr>
             {{/each}}
-            {{#unless historial}}
-            <tr>
-                <td colspan="4" style="text-align: center;">Aquest client encara no ha realitzat compres.</td>
-            </tr>
-            {{/unless}}
         </tbody>
     </table>
 </div>

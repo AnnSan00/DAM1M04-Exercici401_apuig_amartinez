@@ -1,44 +1,48 @@
-<div class="container">
+<div class="card form-container">
     <h2>Afegir Nou Producte</h2>
-
-    <form action="/create" method="POST" id="formProducte">
+    
+    <form action="/create" method="POST" id="productForm">
+        {{!-- Camp amagat obligatori segons enunciat --}}
         <input type="hidden" name="taula" value="productes">
 
         <div class="form-group">
-            <label for="name">Nom del Producte:</label>
-            <input type="text" name="name" id="name" placeholder="Ex: Teclat Mecànic">
+            <label>Nom del producte:</label>
+            <input type="text" name="name" id="name" class="form-control">
             <span class="error-msg" id="error-name"></span>
         </div>
 
-        <div class="form-group">
-            <label for="category">Categoria:</label>
-            <input type="text" name="category" id="category" placeholder="Ex: Perifèrics">
-            <span class="error-msg" id="error-category"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="price">Preu (€):</label>
-            <input type="number" step="0.01" name="price" id="price" placeholder="0.00">
-            <span class="error-msg" id="error-price"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="stock">Stock Inicial:</label>
-            <input type="number" name="stock" id="stock" placeholder="0">
-            <span class="error-msg" id="error-stock"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="active">Estat:</label>
-            <select name="active" id="active">
-                <option value="1">Actiu (Visible a la botiga)</option>
-                <option value="0">Inactiu</option>
-            </select>
+        <div class="grid-2-cols">
+            <div class="form-group">
+                <label>Preu (€):</label>
+                <input type="number" name="price" id="price" step="0.01" class="form-control">
+                <span class="error-msg" id="error-price"></span>
+            </div>
+            <div class="form-group">
+                <label>Stock inicial:</label>
+                <input type="number" name="stock" id="stock" class="form-control">
+                <span class="error-msg" id="error-stock"></span>
+            </div>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn">Crear Producte</button>
-            <a href="/productes" class="btn btn-toggle">Cancel·lar</a>
+            <button type="submit" class="btn">Guardar Producte</button>
+            <a href="/productes" class="btn btn-outline">Cancel·lar</a>
         </div>
     </form>
 </div>
+
+{{!-- Validació JS específica per a aquest formulari --}}
+<script>
+document.getElementById('productForm').addEventListener('submit', function(e) {
+    let hasError = false;
+    const name = document.getElementById('name');
+    
+    if (name.value.length < 3) {
+        name.classList.add('input-error'); // Classe que hem posat al CSS
+        document.getElementById('error-name').innerText = "Nom massa curt";
+        hasError = true;
+    }
+    
+    if (hasError) e.preventDefault();
+});
+</script>

@@ -1,52 +1,40 @@
-<div class="container">
+<header class="list-header">
     <h2>Gestió de Productes</h2>
+    <a href="/producteAfegir" class="btn btn-success">+ Nou Producte</a>
+</header>
 
-    <div class="header-actions">
-        <form action="/productes" method="GET" class="search-form">
-            <input type="text" name="cerca" placeholder="Cerca per nom o categoria..." value="{{cerca}}">
-            <button type="submit" class="btn">Buscar</button>
-        </form>
-        
-        <div class="toggles">
-            <button id="toggleColors" class="btn btn-toggle">Colors Stock</button>
-            <a href="/producteAfegir" class="btn">Afegir Producte</a>
-        </div>
-    </div>
+<form action="/productes" method="GET" class="search-form">
+    <input type="text" name="cerca" placeholder="Cerca per nom o categoria...">
+    <button type="submit">Buscar</button>
+</form>
 
-    <table id="taulaProductes">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Categoria</th>
-                <th>Preu</th>
-                <th>Stock</th>
-                <th>Actiu</th>
-                <th>Accions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each productes}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.category}}</td>
-                <td>{{this.price}} €</td>
-                <td><span class="status-{{this.stockLevel}}">{{this.stock}}</span></td>
-                <td>{{#if this.active}}Sí{{else}}No{{/if}}</td>
-                <td>
-                    <a href="/producteEditar?id={{this.id}}" class="btn">Editar</a>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+<table class="main-table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Categoria</th>
+            <th>Preu</th>
+            <th>Stock</th>
+            <th>Accions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each productes}}
+        <tr class="{{#if (lt this.stock 5)}}stock-crit{{else if (lt this.stock 15)}}stock-low{{else}}stock-ok{{/if}}">
+            <td>{{this.name}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.price}}€</td>
+            <td>{{this.stock}}</td>
+            <td>
+                <a href="/producteEditar?id={{this.id}}">✏️ Editar</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 
-    <div class="pagination">
-        {{#if showPrev}}
-            <a href="/productes?pagina={{prevPage}}&cerca={{cerca}}" class="btn">Anterior</a>
-        {{/if}}
-        <span class="page-info">Pàgina {{currentPage}}</span>
-        {{#if showNext}}
-            <a href="/productes?pagina={{nextPage}}&cerca={{cerca}}" class="btn">Següent</a>
-        {{/if}}
-    </div>
+<div class="pagination">
+    <a href="/productes?pagina={{prev}}">⬅️ Anterior</a>
+    <span>Pàgina {{actual}}</span>
+    <a href="/productes?pagina={{next}}">Següent ➡️</a>
 </div>
