@@ -32,15 +32,15 @@ body {
     color: var(--text);
     font-family: 'Segoe UI', sans-serif;
     padding: 20px;
-    transition: 0.3s; /* Perquè el canvi de tema sigui suau */
+    transition: 0.3s;
 }
 
 .container {
     max-width: 1100px;
     margin: 0 auto;
+    padding-top: 30px;
 }
 
-/* Menú de navegació (Flexbox de la xuleta) */
 nav {
     display: flex;
     justify-content: space-between;
@@ -63,7 +63,6 @@ nav a { text-decoration: none; color: var(--text); font-weight: 600; }
     margin-top: 20px;
 }
 
-/* Vista compacta del Dashboard (Requisit) */
 #kpi-grid.compact {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
@@ -92,7 +91,6 @@ table {
 th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
 th { background: rgba(0,0,0,0.02); color: var(--primary); }
 
-/* Classes d'estat d'stock (Activat pel toggle) */
 .stock-colors .ok { background-color: rgba(46, 204, 113, 0.15); color: #27ae60; }
 .stock-colors .low { background-color: rgba(241, 196, 15, 0.15); color: #d4ac0d; }
 .stock-colors .crit { background-color: rgba(231, 76, 60, 0.15); color: #c0392b; font-weight: bold; }
@@ -107,18 +105,21 @@ button, .btn {
     cursor: pointer;
     font-weight: 600;
     transition: filter 0.2s;
+    display: inline-block;
+    text-decoration: none;
 }
 
-button:hover { filter: brightness(1.1); }
-/* --- NAVEGACIÓ SUPERIOR (Basat en la Xuleta: Flexbox) --- */
+button:hover, .btn:hover { filter: brightness(1.1); }
+
+/* --- NAVEGACIÓ SUPERIOR (Flexbox) --- */
 .top-nav {
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--border);
     padding: 0 20px;
     height: 70px;
     display: flex;
-    align-items: center; /* Xuleta: Alineació vertical */
-    position: sticky;    /* Xuleta: Es queda fix a dalt */
+    align-items: center;
+    position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
@@ -129,7 +130,7 @@ button:hover { filter: brightness(1.1); }
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Xuleta: Separa logo, links i tema */
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -142,7 +143,7 @@ button:hover { filter: brightness(1.1); }
 
 .nav-links {
     display: flex;
-    gap: 30px; /* Espai entre columnes de la xuleta */
+    gap: 30px;
     list-style: none;
 }
 
@@ -155,19 +156,96 @@ button:hover { filter: brightness(1.1); }
 
 .nav-links a:hover {
     color: var(--primary);
-    text-decoration: underline; /* Xuleta: Typography */
+    text-decoration: underline;
 }
 
-/* --- AJUST DEL CONTINGUT --- */
-.container {
-    padding-top: 30px; /* Perquè el contingut no toqui el menú */
-}
-
-/* --- ESTIL DEL SELECTOR DE TEMA --- */
 #themeSelector {
     padding: 5px 10px;
-    border-radius: 5px; /* Xuleta: Border-radius */
+    border-radius: 5px;
     background: var(--bg);
     color: var(--text);
     border: 1px solid var(--border);
+}
+
+/* --- CORRECCIONS ESTRUCTURALS DE LAYOUT --- */
+
+/* Estils per a textos solts i títols de capçalera */
+.container h1, 
+.container h2, 
+.container p {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* El botó "+ Nou..." independent o dins d'una caixa */
+.container > a.btn,
+.header-split .btn {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    white-space: nowrap;
+}
+
+/* Contenidor compartit per a Clients */
+.header-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+/* Formulari de cerca genèric (funciona a Productes i Clients) */
+.search-form,
+.container > form {
+    display: flex !important;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+/* Control dels inputs de cerca */
+.search-form input[type="text"],
+.container > form input[type="text"] {
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    flex-grow: 1;
+}
+
+/* Botons interns de les taules (Fitxa / Editar) */
+.btn-sm {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 5px;
+    display: inline-block;
+}
+a.btn-sm[href*="Fitxa"] { background-color: var(--primary); color: white; }
+a.btn-sm[href*="Editar"] { background-color: #ecc94b; color: #1a1a2e; }
+.btn-sm:hover { filter: brightness(1.1); }
+
+/* Paginació neta i sense trepitjar el peu de pàgina */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    padding-top: 15px;
+    width: 100%;
+}
+
+/* Imatge de logo trencada oculta o controlada */
+img[alt*="Logo MiniERP"] {
+    max-height: 35px;
+    margin-bottom: 10px;
+    display: block;
 }

@@ -9,8 +9,11 @@ const app = express();
 app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views/layout'), // El teu directori és singular
-    partialsDir: path.join(__dirname, 'views/partials')
+    layoutsDir: path.join(__dirname, 'views/layout'), 
+    partialsDir: path.join(__dirname, 'views/partials'),
+    helpers: {
+        lt: (a, b) => Number(a) < Number(b)
+    }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
