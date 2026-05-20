@@ -5,12 +5,12 @@
     <!-- DADES CLIENT -->
     <div class="client-card">
         <h2>{{client.name}}</h2>
-
+        <!-- DADES DE CONTACTE -->
         <p><strong>Email:</strong> {{client.email}}</p>
         <p><strong>Telèfon:</strong> {{client.phone}}</p>
 
         <hr>
-
+        <!-- DADES DE COMPRES -->
         <p><strong>Nombre de compres:</strong> {{num_compres}}</p>
         <p><strong>Total gastat:</strong> {{total_gastat}} €</p>
         <p><strong>Ticket mitjà:</strong> {{ticket_mitja}} €</p>
@@ -18,7 +18,7 @@
 
     <!-- HISTORIAL DE VENDES -->
     <h2 class="section-title">Últimes 10 vendes</h2>
-
+    <!-- TAULA HISTORIAL DE VENDES -->
     <table class="clients-table">
         <thead>
             <tr>
@@ -26,7 +26,7 @@
                 <th>Total (€)</th>
             </tr>
         </thead>
-
+        <!-- FILA DE VENDES -->
         <tbody>
             {{#each vendes}}
             <tr>

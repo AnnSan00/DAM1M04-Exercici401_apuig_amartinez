@@ -3,24 +3,24 @@
     <h1 class="page-title">Editar client</h1>
 
     <form action="/clients/update" method="POST" id="form-client" class="form-card">
-
+    <!-- CAMP ID OCULT -->
         <input type="hidden" name="id" value="{{client.id}}">
-
+        <!-- CAMP NOM -->
         <div class="form-group">
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" value="{{client.name}}" required>
         </div>
-
+        <!-- CAMP EMAIL -->
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" value="{{client.email}}" required>
         </div>
-
+        <!-- CAMP TELÈFON -->
         <div class="form-group">
             <label for="telefon">Telèfon:</label>
             <input type="tel" id="telefon" name="telefon" value="{{client.phone}}" required>
         </div>
-
+        <!-- BOTÓ DE GUARDAR CANVIS -->
         <button type="submit" class="btn-afegir">💾 Guardar canvis</button>
     </form>
 

@@ -76,6 +76,13 @@ footer {
   margin-top: 30px;
   font-size: 0.9em;
 }
+.dashboard {
+  padding: 20px;
+}
+.dashboard-page {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 
 /* ==========================================
    KPI DASHBOARD
@@ -117,6 +124,12 @@ footer {
   padding: 15px;
   opacity: 0.9;
   transform: scale(0.95);
+}
+.kpi-icon {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .kpi-container.compact .kpi h3 { font-size: 1em; }
