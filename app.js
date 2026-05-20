@@ -5,6 +5,12 @@ const express = require('express');
 const path = require('path');
 const { engine } = require('express-handlebars');
 
+// --- DETECCIÓN DE ENTORNO (PROXMOX / LOCAL) ---
+// Ponemos el puerto en las variables de entorno ANTES de cargar la conexión
+const isProxmox = !!process.env.PM2_HOME;
+process.env.DB_PORT = isProxmox ? '3306' : '3307';
+// ----------------------------------------------
+
 const app = express();
 const PORT = 3000;
 
@@ -60,10 +66,10 @@ app.use('/clients', clientsRoutes);
 app.use('/vendes', vendesRoutes);
 
 
-
 // ==========================================
 // SERVIDOR
 // ==========================================
 app.listen(PORT, () => {
     console.log(`Servidor iniciado en http://localhost:${PORT}`);
+    console.log(`Modo detectado: ${isProxmox ? 'Proxmox (Puerto 3306)' : 'Local (Puerto 3307)'}`);
 });

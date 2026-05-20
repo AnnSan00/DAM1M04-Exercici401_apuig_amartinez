@@ -1,19 +1,29 @@
 // Importamos mysql2 en versión con promesas
 const mysql = require('mysql2/promise');
 
+// --- DETECCIÓN AUTOMÁTICA DE ENTORNO ---
+const isProxmox = !!process.env.PM2_HOME;
+// ----------------------------------------
+
 // ==========================================
-// CONFIGURACIÓN DE LA CONEXIÓN
+// CONFIGURACIÓN DE LA CONEXIÓN DINÁMICA
 // ==========================================
 
 const pool = mysql.createPool({
-    host: '127.0.0.1',        // Servidor de la BD
-    user: 'root',             // Usuario (XAMPP normalmente root)
-    password: '1234',     // ⚠️ Cambiar si tienes contraseña
-    database: 'minierp',      // Nombre de la base de datos
+    host: '127.0.0.1',        
+    
+    // EN PROXMOX: Usa el usuario 'super'. EN TU PC LOCAL: Usa 'root' (como tenías antes)
+    user: isProxmox ? 'super' : 'root', 
+    
+    // EN PROXMOX: Fuerza el puerto 3306. EN LOCAL: Usa el puerto por defecto de tu PC (3306)
+    port: isProxmox ? 3306 : 3306, 
+    
+    password: '1234',         
+    database: 'minierp',      
 
-    waitForConnections: true, // Espera si no hay conexiones libres
-    connectionLimit: 10,      // Máximo de conexiones simultáneas
-    queueLimit: 0             // Sin límite de cola
+    waitForConnections: true, 
+    connectionLimit: 10,      
+    queueLimit: 0             
 });
 
 
@@ -25,16 +35,19 @@ async function provarConnexio() {
     try {
         const conn = await pool.getConnection();
 
-        console.log("✔ Connexió a MySQL correcta");
+        if (isProxmox) {
+            console.log("✔ [PROXMOX] Connexió a MySQL correcta (Usuari: super)");
+        } else {
+            console.log("✔ [LOCAL] Connexió a MySQL correcta (Usuari: root)");
+        }
 
-        conn.release(); // Liberamos la conexión
+        conn.release(); 
     } catch (error) {
         console.error("❌ Error en la connexió a la BD:");
         console.error(error.message);
     }
 }
 
-// Ejecutamos la prueba al iniciar
 provarConnexio();
 
 
@@ -42,7 +55,6 @@ provarConnexio();
 // FUNCIONES EXTRA (OPCIONAL PERO ÚTIL)
 // ==========================================
 
-// Ejecutar consultas fácilmente
 async function query(sql, params) {
     try {
         const [rows] = await pool.query(sql, params);

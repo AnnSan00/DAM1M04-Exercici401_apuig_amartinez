@@ -95,8 +95,19 @@ router.get('/', async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Error dashboard:", error);
-        res.send("Error carregant dashboard");
+        // ==========================================
+        // CAPTURA DETALLADA DEL ERROR PARA PROXMOX
+        // ==========================================
+        console.error("🔴 [ERROR CRÍTICO] Detalle en el dashboard:", error);
+        
+        // Te mostrará en la web si es un problema de tablas inexistentes o de credenciales
+        res.status(500).send(`
+            <h2>❌ Error carregant dashboard (Detalle técnico)</h2>
+            <p><strong>Mensaje:</strong> ${error.message}</p>
+            <p><strong>Código SQL:</strong> ${error.code || 'N/A'}</p>
+            <br>
+            <small>Revisa las tablas de la base de datos en Proxmox o el usuario en connection.js</small>
+        `);
     }
 });
 
