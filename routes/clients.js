@@ -126,7 +126,6 @@ router.post('/delete', async (req, res) => {
         res.send("Error inactivant client");
     }
 });
-
 // ==========================================
 // FITXA CLIENT (DETALLE)
 // ==========================================
@@ -134,33 +133,46 @@ router.post('/delete', async (req, res) => {
 router.get('/fitxa', async (req, res) => {
     const id = req.query.id;
 
-    // datos cliente
+    // dades del client
     const [[client]] = await db.pool.query(
         "SELECT * FROM customers WHERE id = ?",
         [id]
     );
 
-    // últimas ventas
+    // últimes 10 vendes
     const [vendes] = await db.pool.query(
-        `SELECT * FROM sales 
+        `SELECT sale_date, total 
+         FROM sales 
          WHERE customer_id = ? 
          ORDER BY sale_date DESC 
          LIMIT 10`,
         [id]
     );
 
-    // total gastado
+    // total gastat
     const [[total]] = await db.pool.query(
-        "SELECT SUM(total) as total FROM sales WHERE customer_id=?",
+        "SELECT SUM(total) AS total_gastat FROM sales WHERE customer_id = ?",
         [id]
     );
+
+    // número de compres
+    const [[compres]] = await db.pool.query(
+        "SELECT COUNT(*) AS num_compres FROM sales WHERE customer_id = ?",
+        [id]
+    );
+
+    // ticket mitjà
+    const ticket_mitja = compres.num_compres > 0 
+        ? (total.total_gastat / compres.num_compres).toFixed(2)
+        : 0;
 
     res.render('clientFitxa', {
         client,
         vendes,
-        total: total.total || 0
+        total_gastat: total.total_gastat || 0,
+        num_compres: compres.num_compres,
+        ticket_mitja
     });
 });
-
 
 module.exports = router;

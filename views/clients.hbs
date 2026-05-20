@@ -1,87 +1,82 @@
-<!-- ==========================================
-     LLISTAT CLIENTS
-========================================== -->
+<section class="clients-page">
 
-<h2>Clients</h2>
+    <h1 class="page-title">Clients</h1>
 
+    <!-- BUSCADOR MODERN -->
+    <form method="GET" action="/clients" class="search-bar">
 
-<!-- ==========================
-     BUSCADOR + FILTROS
-========================== -->
+        <input 
+            type="text" 
+            name="cerca" 
+            placeholder="Buscar per nom o email..." 
+            value="{{cerca}}"
+        >
 
-<form method="GET" action="/clients">
+        <label class="toggle-switch">
+            <input type="checkbox" id="toggleVIP">
+            <span class="slider"></span>
+            <span class="toggle-text">Només VIP</span>
+        </label>
 
-    <input type="text" name="cerca" placeholder="Buscar per nom o email" value="{{cerca}}">
+        <button type="submit" class="btn-search">Buscar</button>
+    </form>
 
-    <label>
-        <input type="checkbox" name="vip" value="1" {{#if vip}}checked{{/if}}>
-        Només VIP
-    </label>
+    <!-- BOTÓ NOU CLIENT -->
+    <div class="actions-bar">
+        <a href="/clients/afegir" class="btn-afegir">
+            <span class="icon">➕</span> Nou client
+        </a>
+    </div>
 
-    <button type="submit">Buscar</button>
+    <!-- TAULA CLIENTS -->
+    <table class="clients-table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Telèfon</th>
+                <th>VIP</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
 
-</form>
+        <tbody>
+            {{#each clients}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{phone}}</td>
+                <td>{{#if vip}}Sí{{else}}No{{/if}}</td>
+                <td class="acciones">
 
+                    <!-- BOTÓ FITXA -->
+                    <form action="/clients/fitxa" method="GET" class="inline-form">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button type="submit" class="btn-ver">Fitxa</button>
+                    </form>
 
-<!-- ==========================
-     BOTÓN AÑADIR
-========================== -->
+                    <!-- BOTÓ EDITAR -->
+                    <form action="/clients/editar" method="GET" class="inline-form">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button type="submit" class="btn-editar">Editar</button>
+                    </form>
 
-<div style="margin: 20px;">
-    <a href="/clients/afegir">➕ Nou client</a>
-</div>
+                </td>
 
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
-<!-- ==========================
-     TABLA CLIENTES
-========================== -->
+    <!-- PAGINACIÓ -->
+    <div class="pagination">
+        {{#if pagina}}
+            <a href="/clients?pagina={{dec pagina}}&cerca={{cerca}}" class="page-btn">← Anterior</a>
+        {{/if}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Telèfon</th>
-            <th># Compres</th>
-            <th>Accions</th>
-        </tr>
-    </thead>
+        <span class="page-number">Pàgina {{pagina}}</span>
 
-    <tbody>
-        {{#each clients}}
-        <tr>
-            <td>{{name}}</td>
-            <td>{{email}}</td>
-            <td>{{phone}}</td>
-            <td>{{compres}}</td>
+        <a href="/clients?pagina={{inc pagina}}&cerca={{cerca}}" class="page-btn">Següent →</a>
+    </div>
 
-            <td>
-                <a href="/clients/fitxa?id={{id}}">Veure</a> |
-                <a href="/clients/editar?id={{id}}">Editar</a>
-
-                <form action="/clients/delete" method="POST" style="display:inline;" onsubmit="return confirmarEliminar()">
-                    <input type="hidden" name="id" value="{{id}}">
-                    <button type="submit">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-
-<!-- ==========================
-     PAGINACIÓN
-========================== -->
-
-<div style="margin: 20px;">
-
-    {{#if pagina}}
-        <a href="/clients?pagina={{dec pagina}}&cerca={{cerca}}">← Anterior</a>
-    {{/if}}
-
-    <span> Pàgina {{pagina}} </span>
-
-    <a href="/clients?pagina={{inc pagina}}&cerca={{cerca}}">Siguiente →</a>
-
-</div>
+</section>

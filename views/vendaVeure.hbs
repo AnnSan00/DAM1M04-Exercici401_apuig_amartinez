@@ -1,34 +1,47 @@
-<h1>Detalls de la venda</h1>
+<section class="venda-veure-page">
 
-<section style="width:90%; margin:auto; background:white; padding:20px; border-radius:10px;">
+    <h1 class="page-title">Detalls de la venda</h1>
 
-    <h2>Informació general</h2>
-    <p><strong>ID venda:</strong> {{sale.id}}</p>
-    <p><strong>Client:</strong> {{sale.client_name}}</p>
-    <p><strong>Data:</strong> {{sale.sale_date}}</p>
-    <p><strong>Total:</strong> {{sale.total}} €</p>
+    <!-- INFORMACIÓ GENERAL -->
+    <div class="card info-card">
+        <h2>Informació general</h2>
 
-    <h2>Línies de venda</h2>
+        <p><strong>ID venda:</strong> {{sale.id}}</p>
+        <p><strong>Client:</strong> {{sale.client_name}}</p>
+        <p><strong>Data:</strong> {{sale.sale_date}}</p>
+        <p><strong>Total:</strong> {{sale.total}} €</p>
+    </div>
 
-    <table>
-        <tr>
-            <th>Producte</th>
-            <th>Quantitat</th>
-            <th>Preu unitari</th>
-            <th>Total línia</th>
-        </tr>
+    <!-- LÍNIES DE VENDA -->
+    <div class="card lines-card">
+        <h2>Línies de venda</h2>
 
-        {{#each items}}
-        <tr>
-            <td>{{name}}</td>
-            <td>{{qty}}</td>
-            <td>{{unit_price}} €</td>
-            <td>{{line_total}} €</td>
-        </tr>
-        {{/each}}
-    </table>
+        <table class="clients-table">
+            <thead>
+                <tr>
+                    <th>Producte</th>
+                    <th>Quantitat</th>
+                    <th>Preu unitari</th>
+                    <th>Total línia</th>
+                </tr>
+            </thead>
 
-    <br>
-    <a href="/vendes" class="btn editar">Tornar</a>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{qty}}</td>
+                    <td>{{unit_price}} €</td>
+                    <td>{{line_total}} €</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- BOTÓ TORNAR -->
+    <div class="actions-bar">
+        <a href="/vendes" class="btn-back">← Tornar</a>
+    </div>
 
 </section>

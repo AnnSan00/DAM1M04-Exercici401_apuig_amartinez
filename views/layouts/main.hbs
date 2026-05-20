@@ -4,56 +4,31 @@
     <meta charset="UTF-8">
     <title>MiniERP</title>
 
-    <!-- ==========================
-         CSS GLOBAL
-    =========================== -->
-<link rel="stylesheet" href="/css/style.css">
-    <!-- ==========================
-         META VIEWPORT
-    =========================== -->
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- META VIEWPORT -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-
-<!-- ==========================
-     BODY 
-========================== -->
 <body class="clar">
 
-    <!-- ==========================
-         HEADER
-    =========================== -->
+    <!-- HEADER GLOBAL -->
     {{> header}}
 
-
-    <!-- ==========================
-         MENU NAVEGACIÓN
-    =========================== -->
+    <!-- MENÚ DE NAVEGACIÓ -->
     {{> menu}}
 
-
-    <!-- ==========================
-         CONTENIDO DINÁMICO
-    =========================== -->
-    <main>
+    <!-- CONTINGUT PRINCIPAL -->
+    <main class="main-content">
         {{{body}}}
     </main>
 
-
-    <!-- ==========================
-         FOOTER
-    =========================== -->
+    <!-- FOOTER GLOBAL -->
     {{> footer}}
 
-
-    <!-- ==========================
-         JAVASCRIPT
-    =========================== -->
-
-    <!-- JS GLOBAL -->
+    <!-- JAVASCRIPT GLOBAL -->
     <script src="/js/main.js"></script>
-
-    <!-- JS VALIDACIONES -->
     <script src="/js/validation.js"></script>
 
 </body>

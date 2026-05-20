@@ -1,61 +1,42 @@
-<!-- ==========================================
-     LLISTAT VENDES
-========================================== -->
+<section class="vendes-page">
 
-<h2>Vendes</h2>
+    <h2 class="page-title">Vendes</h2>
 
+    <!-- TAULA VENDES -->
+    <table class="clients-table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Client</th>
+                <th>Total (€)</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
 
-<!-- ==========================
-     BOTÓN AÑADIR
-========================== -->
+        <tbody>
+            {{#each vendes}}
+            <tr>
+                <td>{{sale_date}}</td>
+                <td>{{client_name}}</td>
+                <td>{{total}}</td>
 
-<div style="margin: 20px;">
-    <a href="/vendes/afegir">➕ Nova venda</a>
-</div>
+                <td class="acciones">
+                    <a href="/vendes/veure?id={{id}}" class="btn-veure">Veure</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
+    <!-- PAGINACIÓ -->
+    <div class="pagination">
+        {{#if pagina}}
+            <a href="/vendes?pagina={{dec pagina}}" class="page-btn">← Anterior</a>
+        {{/if}}
 
-<!-- ==========================
-     TABLA VENDES
-========================== -->
+        <span class="page-number">Pàgina {{pagina}}</span>
 
-<table>
-    <thead>
-        <tr>
-            <th>Data</th>
-            <th>Client</th>
-            <th>Total (€)</th>
-            <th>Accions</th>
-        </tr>
-    </thead>
+        <a href="/vendes?pagina={{inc pagina}}" class="page-btn">Següent →</a>
+    </div>
 
-    <tbody>
-        {{#each vendes}}
-        <tr>
-            <td>{{sale_date}}</td>
-            <td>{{client_name}}</td>
-            <td>{{total}}</td>
-
-            <td>
-                <a href="/vendes/veure?id={{id}}">Veure</a>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-
-<!-- ==========================
-     PAGINACIÓN
-========================== -->
-
-<div style="margin: 20px;">
-
-    {{#if pagina}}
-        <a href="/vendes?pagina={{dec pagina}}">← Anterior</a>
-    {{/if}}
-
-    <span> Pàgina {{pagina}} </span>
-
-    <a href="/vendes?pagina={{inc pagina}}">Següent →</a>
-
-</div>
+</section>

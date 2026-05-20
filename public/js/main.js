@@ -34,33 +34,46 @@ function canviarTema(tema) {
 // ==========================================
 
 function carregarToggles() {
-    // Toggle dashboard compacto
-    const toggleCompacte = document.getElementById("toggleCompacte");
-    if (toggleCompacte) {
+
+    // ==========================
+    // TOGGLE KPI (compacte)
+    // ==========================
+    const toggleCompact = document.getElementById("toggleCompact");
+    const kpiGrid = document.getElementById("kpi-grid");
+
+    if (toggleCompact && kpiGrid) {
         const estat = localStorage.getItem("compacte") === "true";
-        toggleCompacte.checked = estat;
-        document.body.classList.toggle("dashboard-compacte", estat);
+        toggleCompact.checked = estat;
+        kpiGrid.classList.toggle("compact", estat);
 
-        toggleCompacte.addEventListener("change", () => {
-            document.body.classList.toggle("dashboard-compacte");
-            localStorage.setItem("compacte", toggleCompacte.checked);
+        toggleCompact.addEventListener("change", () => {
+            kpiGrid.classList.toggle("compact");
+            localStorage.setItem("compacte", toggleCompact.checked);
         });
     }
 
-    // Toggle colores stock
-    const toggleColors = document.getElementById("toggleColors");
-    if (toggleColors) {
-        const estat = localStorage.getItem("colors") === "true";
-        toggleColors.checked = estat;
-        document.body.classList.toggle("no-colors", estat);
+// ==========================
+// TOGGLE COLORS STOCK (global)
+// ==========================
+const toggleColors = document.getElementById("toggleColors");
+const stockTables = document.querySelectorAll(".stock-table");
 
-        toggleColors.addEventListener("change", () => {
-            document.body.classList.toggle("no-colors");
-            localStorage.setItem("colors", toggleColors.checked);
-        });
-    }
+if (toggleColors && stockTables.length > 0) {
+    const estat = localStorage.getItem("colors") === "true";
+    toggleColors.checked = estat;
+
+    // Aplica estat inicial
+    stockTables.forEach(t => t.classList.toggle("stock-colors", estat));
+
+    // Canvi de toggle
+    toggleColors.addEventListener("change", () => {
+        const activat = toggleColors.checked;
+        localStorage.setItem("colors", activat);
+
+        stockTables.forEach(t => t.classList.toggle("stock-colors", activat));
+    });
 }
-
+}
 
 // ==========================================
 // CONFIRMACIONES
@@ -72,15 +85,13 @@ function confirmarEliminar() {
 
 
 // ==========================================
-// MEJORAS UX (detalle pro)
+// MEJORAS UX
 // ==========================================
 
-// Scroll arriba automático en cambio de página
 function scrollTopAuto() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Aplicar a links de paginación si quieres
 document.addEventListener("click", (e) => {
     if (e.target.tagName === "A") {
         scrollTopAuto();
@@ -89,7 +100,7 @@ document.addEventListener("click", (e) => {
 
 
 // ==========================================
-// DEBUG (para desarrollo)
+// DEBUG
 // ==========================================
 
 function debug(msg) {

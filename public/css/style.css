@@ -1,6 +1,7 @@
 /* ==========================================
-   MINI ERP - ESTILOS GENERALES
+   MINI ERP — ESTILS GENERALS
 ========================================== */
+
 body {
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   margin: 0;
@@ -9,20 +10,42 @@ body {
   color: #2c3e50;
   transition: all 0.3s ease;
 }
-h1, h2 { margin-left: 20px; font-weight: 600; color: #1f3b73; }
 
-/* HEADER / MENU / FOOTER */
+h1, h2 {
+  margin-left: 20px;
+  font-weight: 600;
+  color: #1f3b73;
+}
+
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 2em;
+}
+
+/* ==========================================
+   HEADER / MENU / FOOTER
+========================================== */
+
 header, nav, footer {
   color: white;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
+
 header {
   background: linear-gradient(90deg,#1f3b73,#2c4fa3);
   padding: 15px 25px;
 }
-.header-container { display: flex; justify-content: space-between; align-items: center; }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .logo h1 { margin: 0; font-size: 1.8em; }
 .logo small { font-size: 0.9em; color: #dce6ff; }
+
 nav {
   background: #2c4fa3;
   padding: 12px 25px;
@@ -30,6 +53,7 @@ nav {
   justify-content: center;
   gap: 40px;
 }
+
 nav a {
   color: white;
   text-decoration: none;
@@ -39,7 +63,12 @@ nav a {
   border-radius: 6px;
   transition: 0.2s ease;
 }
-nav a:hover { background: #1f3b73; color: #dce6ff; }
+
+nav a:hover {
+  background: #1f3b73;
+  color: #dce6ff;
+}
+
 footer {
   background: #1f3b73;
   text-align: center;
@@ -48,7 +77,80 @@ footer {
   font-size: 0.9em;
 }
 
-/* TABLAS */
+/* ==========================================
+   KPI DASHBOARD
+========================================== */
+
+.kpi-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+}
+
+.kpi {
+  background: linear-gradient(135deg,#ffffff,#e8efff);
+  border-radius: 16px;
+  padding: 25px;
+  width: 220px;
+  color: #1f3b73;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.kpi:hover { transform: translateY(-4px); }
+
+.kpi h3 {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.kpi p {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* MODE COMPACTE */
+.kpi-container.compact .kpi {
+  width: 180px;
+  padding: 15px;
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+.kpi-container.compact .kpi h3 { font-size: 1em; }
+.kpi-container.compact .kpi p { font-size: 1.2em; }
+
+/* ==========================================
+   TOGGLES
+========================================== */
+
+.toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px;
+  font-weight: 600;
+  color: #1f3b73;
+  background: #dce6ff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.toggle-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2c4fa3;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+/* ==========================================
+   TAULES
+========================================== */
+
 table {
   width: 90%;
   margin: 20px auto;
@@ -57,145 +159,324 @@ table {
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
+
 th, td {
   padding: 10px;
   text-align: center;
 }
-th { background: #2c4fa3; color: white; }
-td { border-bottom: 1px solid #e0e6f0; white-space: nowrap; }
-tr:hover { background: #f0f4ff; }
 
-/* BOTONES */
-button {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 2px;
-  border-radius: 6px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
+th {
+  background: #2c4fa3;
   color: white;
 }
-button:hover { background: #1f3b73; }
-button.eliminar { background: #d63031; }
-button.eliminar:hover { background: #b71c1c; }
-button.editar { background: #2c4fa3; }
-button.veure { background: #4caf50; }
-button.veure:hover { background: #388e3c; }
-td form { display: inline; margin: 0; padding: 0; }
-td.acciones { white-space: nowrap; text-align: center; vertical-align: middle; }
 
-/* FORMULARIOS */
-form {
-  margin: 20px auto;
-  width: 90%;
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+td {
+  border-bottom: 1px solid #e0e6f0;
+  white-space: nowrap;
 }
-input, select {
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: 1px solid #b5c7e3;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
+
+tr:hover { background: #f0f4ff; }
+
+/* COLORS STOCK ACTIVABLES */
+
+.stock-table.stock-colors .stock-0,
+.stock-table.stock-colors .stock-1,
+.stock-table.stock-colors .stock-2 {
+  background: #ff6b6b !important;
 }
-input:focus { outline: none; border: 2px solid #2c4fa3; }
-.error-msg { color: #d63031; font-size: 12px; }
 
-/* COLORES DE STOCK */
-[class^="stock-"] { color: #2c3e50; }
-.stock-0,.stock-1,.stock-2 { background: #ff6b6b !important; }
-.stock-3,.stock-4,.stock-5 { background: #ffa94d !important; }
-.stock-6,.stock-7,.stock-8,.stock-9,.stock-10 { background: #8ce99a !important; }
-.no-colors tr { background: none !important; }
-
-/* DASHBOARD */
-.kpi-container { display: flex; gap: 20px; margin: 20px; flex-wrap: wrap; }
-.kpi {
-  background: linear-gradient(135deg,#fff,#e8efff);
-  border-radius: 12px;
-  padding: 20px;
-  width: 180px;
-  text-align: center;
-  color: #1f3b73;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease;
+.stock-table.stock-colors .stock-3,
+.stock-table.stock-colors .stock-4,
+.stock-table.stock-colors .stock-5 {
+  background: #ffa94d !important;
 }
-.kpi:hover { transform: scale(1.05); }
 
-/* TEMAS */
+.stock-table.stock-colors .stock-6,
+.stock-table.stock-colors .stock-7,
+.stock-table.stock-colors .stock-8,
+.stock-table.stock-colors .stock-9,
+.stock-table.stock-colors .stock-10 {
+  background: #8ce99a !important;
+}
+
+/* ==========================================
+   TEMES
+========================================== */
+
 body.clar { background: #eef2f7; color: #2c3e50; }
 body.nit { background: #1b1f2a; color: #dce6ff; }
 body.nit table { background: #2a3142; color: #dce6ff; }
 body.nit th { background: #1f3b73; }
-body.contrast { background: black; color: yellow; }
+body.contrast { background: black; color: rgb(69, 69, 2); }
 
-/* VENDA VEURE */
-section, section h1, section h2 { color: #1f3b73; }
-section p, section strong, section span, section table td { color: #2c3e50; }
-section table th { background: #2c4fa3; color: white; }
+/* ==========================================
+   TRANSICIONS
+========================================== */
 
-/* TRANSICIONES */
-button, input, table, body { transition: all 0.2s ease; }
+button, input, table, body, .kpi {
+  transition: all 0.3s ease;
+}
+
 main { animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-/* ==========================================
-   FIX LEGIBILIDAD TABLAS OSCURAS
-========================================== */
 
-body.nit table td,
-body.nit table th {
-  color: #f0f4ff; /* text clar sobre fons fosc */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-body.nit table tr:hover {
-  background: #3a4560; /* lleu ressalt per hover */
-}
+/* BOTÓ BUSCAR */
 
-body.nit section table td {
-  color: #f0f4ff;
-}
-
-body.nit section table th {
+form button[type="submit"] {
   background: #2c4fa3;
-  color: #ffffff;
-}
-/* ==========================================
-   FIX LEGIBILIDAD HEADER LOGO
-========================================== */
-
-.logo h1 {
-  color: #ffffff; /* blanc net per al text MiniERP */
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* lleu ombra per contrast */
-}
-
-.logo small {
-  color: #f0f4ff; /* blau clar per Gestió de botiga */
-  font-weight: 500;
-}
-
-.logo img {
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); /* millora visibilitat del carretó */
-}
-/* ==========================================
-   FIX LEGIBILIDAD BOTÓN ELIMINAR
-========================================== */
-
-button.eliminar {
-  background: #d63031; /* vermell corporatiu */
-  color: #ffffff;      /* text blanc net */
-  font-weight: 600;
+  color: #fff;
   border: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* lleu ombra per contrast */
-  transition: background 0.2s ease, transform 0.1s ease;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-button.eliminar:hover {
-  background: #b71c1c; /* vermell més fosc al hover */
-  transform: scale(1.05); /* petit efecte visual */
+form button[type="submit"]:hover {
+  background: #1f3b73;
 }
+
+/* MODE COMPACTE — AMAGAR LLISTATS */
+
+.kpi-container.compact + .llistats {
+  display: none;
+}
+/* ==========================================
+   BUSCADOR MODERN
+========================================== */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #d0d7e2;
+  border-radius: 10px;
+  font-size: 1em;
+  color: #2c3e50;
+  transition: border 0.2s ease;
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none;
+  border: 2px solid #2c4fa3;
+}
+/* ==========================================
+   BOTÓ AFEGIR PRODUCTE
+========================================== */
+
+.btn-afegir {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2c4fa3;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05em;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.btn-afegir:hover {
+  background: #1f3b73;
+  transform: translateY(-2px);
+}
+
+.btn-afegir .icon {
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+}
+
+/* BOTÓ BUSCAR */
+.btn-search {
+  background: #2c4fa3;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-search:hover {
+  background: #1f3b73;
+}
+
+/* TOGGLE MODERN */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.slider {
+  width: 40px;
+  height: 22px;
+  background: #d0d7e2;
+  border-radius: 22px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggle-switch input:checked + .slider {
+  background: #2c4fa3;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(18px);
+}
+
+.toggle-text {
+  font-weight: 600;
+  color: #2c3e50;
+}
+.form-card {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #1f3b73;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #d0d7e2;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2c4fa3;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 0.85em;
+  margin-top: 4px;
+  display: none;
+}
+
+.btn-afegir {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2c4fa3;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05em;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: background 0.25s ease, transform 0.15s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-afegir:hover {
+  background: #1f3b73;
+  transform: translateY(-2px);
+}
+.inline-form {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.btn-ver {
+  background: #2c4fa3;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn-ver:hover {
+  background: #1f3b73;
+}
+
+.btn-editar {
+  background: #ffa94d;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn-editar:hover {
+  background: #e68a2e;
+}
+/* ==========================================
+   ESPAI LATERAL GLOBAL
+========================================== */
+
+main, 
+section, 
+.container, 
+.clients-page, 
+.productes-page, 
+.dashboard-page {
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+

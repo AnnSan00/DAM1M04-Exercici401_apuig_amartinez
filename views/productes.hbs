@@ -1,45 +1,77 @@
-<h1>Productes</h1>
+<section class="productes-page">
 
-<a href="/productes/afegir" class="btn-afegir">➕ Afegir producte</a>
+    <h1 class="page-title">Productes</h1>
 
-<form method="GET" action="/productes">
-    <input type="text" name="cerca" placeholder="Cercar..." value="{{cerca}}">
-    <button type="submit">Buscar</button>
-</form>
+    <!-- BOTÓ AFEGIR PRODUCTE -->
+    <div class="actions-bar">
+        <a href="/productes/afegir" class="btn-afegir">
+            <span class="icon">➕</span> Afegir producte
+        </a>
+    </div>
 
-<button id="toggleColors">Colors stock</button>
 
-<table id="taula-productes">
-    <tr>
-        <th>Nom</th>
-        <th>Categoria</th>
-        <th>Preu</th>
-        <th>Stock</th>
-        <th>Actiu</th>
-        <th>Accions</th>
-    </tr>
+    <!-- BUSCADOR MODERN -->
+    <form method="GET" action="/productes" class="search-bar">
 
-    {{#each productes}}
-    <tr class="stock-{{stock}}">
-        <td>{{name}}</td>
-        <td>{{category}}</td>
-        <td>{{price}} €</td>
-        <td>{{stock}}</td>
-        <td>{{#if active}}Sí{{else}}No{{/if}}</td>
-        <td class="acciones">
-            <form action="/productes/editar" method="GET" style="display: inline;">
-                <input type="hidden" name="id" value="{{id}}">
-                <button type="submit" class="editar">Editar</button>
-            </form>
-        </td>
-    </tr>
-    {{/each}}
-</table>
+        <input 
+            type="text" 
+            name="cerca" 
+            placeholder="Cercar producte..." 
+            value="{{cerca}}"
+        >
 
-<div style="margin-left:20px;">
-    {{#if pagina}}
-        <a href="/productes?pagina={{dec pagina}}&cerca={{cerca}}">Anterior</a>
-    {{/if}}
+        <!-- TOGGLE MODERN -->
+        <label class="toggle-switch">
+            <input type="checkbox" id="toggleColors">
+            <span class="slider"></span>
+            <span class="toggle-text">Colors de stock</span>
+        </label>
 
-    <a href="/productes?pagina={{inc pagina}}&cerca={{cerca}}">Següent</a>
-</div>
+        <button type="submit" class="btn-search">Buscar</button>
+    </form>
+
+    <!-- TAULA PRODUCTES -->
+    <table id="taula-productes" class="stock-table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Categoria</th>
+                <th>Preu</th>
+                <th>Stock</th>
+                <th>Actiu</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each productes}}
+            <tr class="stock-{{stock}}">
+                <td>{{name}}</td>
+                <td>{{category}}</td>
+                <td>{{price}} €</td>
+                <td>{{stock}}</td>
+                <td>{{#if active}}Sí{{else}}No{{/if}}</td>
+
+                <td class="acciones">
+                    <form action="/productes/editar" method="GET" class="inline-form">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button type="submit" class="btn-editar">Editar</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <!-- PAGINACIÓ -->
+    <div class="pagination">
+        {{#if pagina}}
+            <a href="/productes?pagina={{dec pagina}}&cerca={{cerca}}" class="page-btn">← Anterior</a>
+        {{/if}}
+
+        <span class="page-number">Pàgina {{pagina}}</span>
+
+        <a href="/productes?pagina={{inc pagina}}&cerca={{cerca}}" class="page-btn">Següent →</a>
+    </div>
+
+</section>

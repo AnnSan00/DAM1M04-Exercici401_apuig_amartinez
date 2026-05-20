@@ -1,0 +1,29 @@
+<section class="client-form-page">
+
+    <h1 class="page-title">Afegir client</h1>
+
+    <form action="/clients/create" method="POST" id="form-client" class="form-card">
+
+        <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" placeholder="Nom complet..." required>
+            <small class="error-msg" id="error-nom"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="exemple@correu.com" required>
+            <small class="error-msg" id="error-email"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="telefon">Telèfon:</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="Telèfon de contacte..." required>
+            <small class="error-msg" id="error-telefon"></small>
+        </div>
+
+        <button type="submit" class="btn-afegir">➕ Crear client</button>
+
+    </form>
+
+</section>

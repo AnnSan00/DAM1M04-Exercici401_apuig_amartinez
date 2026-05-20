@@ -1,69 +1,40 @@
-<!-- ==========================================
-     FITXA CLIENT
-========================================== -->
+<section class="client-fitxa">
 
-<h2>Fitxa Client</h2>
+    <h1 class="page-title">Fitxa del client</h1>
 
-<!-- ==========================
-     DATOS CLIENTE
-========================== -->
+    <!-- DADES CLIENT -->
+    <div class="client-card">
+        <h2>{{client.name}}</h2>
 
-<div class="card">
-    <p><strong>Nom:</strong> {{client.name}}</p>
-    <p><strong>Email:</strong> {{client.email}}</p>
-    <p><strong>Telèfon:</strong> {{client.phone}}</p>
-</div>
+        <p><strong>Email:</strong> {{client.email}}</p>
+        <p><strong>Telèfon:</strong> {{client.phone}}</p>
 
+        <hr>
 
-<!-- ==========================
-     RESUM ECONÓMICO
-========================== -->
+        <p><strong>Nombre de compres:</strong> {{num_compres}}</p>
+        <p><strong>Total gastat:</strong> {{total_gastat}} €</p>
+        <p><strong>Ticket mitjà:</strong> {{ticket_mitja}} €</p>
+    </div>
 
-<div class="card">
-    <h3>Resum</h3>
-    <p><strong>Total gastat:</strong> {{total}} €</p>
+    <!-- HISTORIAL DE VENDES -->
+    <h2 class="section-title">Últimes 10 vendes</h2>
 
-    {{#if vendes.length}}
-        <p><strong>Nombre de compres:</strong> {{vendes.length}}</p>
-    {{else}}
-        <p>No té compres</p>
-    {{/if}}
-</div>
+    <table class="clients-table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Total (€)</th>
+            </tr>
+        </thead>
 
+        <tbody>
+            {{#each vendes}}
+            <tr>
+                <td>{{sale_date}}</td>
+                <td>{{total}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
-<!-- ==========================
-     HISTORIAL DE VENDES
-========================== -->
-
-<h3>Últimes vendes</h3>
-
-<table>
-    <thead>
-        <tr>
-            <th>Data</th>
-            <th>Total (€)</th>
-            <th>Accions</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        {{#each vendes}}
-        <tr>
-            <td>{{sale_date}}</td>
-            <td>{{total}}</td>
-            <td>
-                <a href="/vendes/veure?id={{id}}">Veure</a>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-
-<!-- ==========================
-     BOTONES
-========================== -->
-
-<div style="margin: 20px;">
-    <a href="/clients">← Tornar a clients</a>
-</div>
+</section>

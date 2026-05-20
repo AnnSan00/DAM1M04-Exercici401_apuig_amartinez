@@ -1,11 +1,6 @@
-// ==========================================
-// RUTAS PRODUCTES
-// ==========================================
-
 const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
-
 
 // ==========================================
 // LISTADO + PAGINACIÓN + BUSCADOR
@@ -17,6 +12,7 @@ router.get('/', async (req, res) => {
         const limit = 10;
         const offset = pagina * limit;
 
+        // Consulta SQL con búsqueda y paginación
         const sql = `
             SELECT * 
             FROM products 
@@ -24,6 +20,7 @@ router.get('/', async (req, res) => {
             LIMIT ? OFFSET ?
         `;
 
+        // Buscamos por nombre o categoría
         const params = [`%${cerca}%`, `%${cerca}%`, limit, offset];
 
         // db.query() retorna directament rows

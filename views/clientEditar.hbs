@@ -1,25 +1,33 @@
-<h1>Editar client</h1>
-<p>{{client.name}}</p>
+<section class="client-form-page">
 
-<form action="/clients/update" method="POST">
-    <input type="hidden" name="id" value="{{client.id}}">
+    <h1 class="page-title">Editar client</h1>
 
-    <label>Nom:</label>
-    <input type="text" name="nom" value="{{client.name}}" required>
+    <form action="/clients/update" method="POST" id="form-client" class="form-card">
 
-    <label>Email:</label>
-    <input type="email" name="email" value="{{client.email}}" required>
+        <input type="hidden" name="id" value="{{client.id}}">
 
-    <label>Telèfon:</label>
-    <input type="tel" name="phone" value="{{client.phone}}" required>
+        <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" value="{{client.name}}" required>
+        </div>
 
-    <button type="submit" class="editar">Guardar canvis</button>
-</form>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{client.email}}" required>
+        </div>
 
-<hr>
+        <div class="form-group">
+            <label for="telefon">Telèfon:</label>
+            <input type="tel" id="telefon" name="telefon" value="{{client.phone}}" required>
+        </div>
 
-<form action="/clients/delete" method="POST" 
-      onsubmit="return confirm('Segur que vols INACTIVAR aquest client?');">
-    <input type="hidden" name="id" value="{{client.id}}">
-    <button type="submit" class="eliminar">Inactivar client</button>
-</form>
+        <button type="submit" class="btn-afegir">💾 Guardar canvis</button>
+    </form>
+
+    <!-- BOTÓ INACTIVAR CLIENT -->
+    <form action="/clients/delete" method="POST" class="form-card">
+        <input type="hidden" name="id" value="{{client.id}}">
+        <button type="submit" class="btn-danger">🗑️ Inactivar client</button>
+    </form>
+
+</section>
