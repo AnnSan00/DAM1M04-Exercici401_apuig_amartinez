@@ -1,0 +1,69 @@
+<!-- ==========================================
+     FITXA CLIENT
+========================================== -->
+
+<h2>Fitxa Client</h2>
+
+<!-- ==========================
+     DATOS CLIENTE
+========================== -->
+
+<div class="card">
+    <p><strong>Nom:</strong> {{client.name}}</p>
+    <p><strong>Email:</strong> {{client.email}}</p>
+    <p><strong>Telèfon:</strong> {{client.phone}}</p>
+</div>
+
+
+<!-- ==========================
+     RESUM ECONÓMICO
+========================== -->
+
+<div class="card">
+    <h3>Resum</h3>
+    <p><strong>Total gastat:</strong> {{total}} €</p>
+
+    {{#if vendes.length}}
+        <p><strong>Nombre de compres:</strong> {{vendes.length}}</p>
+    {{else}}
+        <p>No té compres</p>
+    {{/if}}
+</div>
+
+
+<!-- ==========================
+     HISTORIAL DE VENDES
+========================== -->
+
+<h3>Últimes vendes</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Total (€)</th>
+            <th>Accions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each vendes}}
+        <tr>
+            <td>{{sale_date}}</td>
+            <td>{{total}}</td>
+            <td>
+                <a href="/vendes/veure?id={{id}}">Veure</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+<!-- ==========================
+     BOTONES
+========================== -->
+
+<div style="margin: 20px;">
+    <a href="/clients">← Tornar a clients</a>
+</div>

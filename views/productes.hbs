@@ -1,0 +1,45 @@
+<h1>Productes</h1>
+
+<a href="/productes/afegir" class="btn-afegir">➕ Afegir producte</a>
+
+<form method="GET" action="/productes">
+    <input type="text" name="cerca" placeholder="Cercar..." value="{{cerca}}">
+    <button type="submit">Buscar</button>
+</form>
+
+<button id="toggleColors">Colors stock</button>
+
+<table id="taula-productes">
+    <tr>
+        <th>Nom</th>
+        <th>Categoria</th>
+        <th>Preu</th>
+        <th>Stock</th>
+        <th>Actiu</th>
+        <th>Accions</th>
+    </tr>
+
+    {{#each productes}}
+    <tr class="stock-{{stock}}">
+        <td>{{name}}</td>
+        <td>{{category}}</td>
+        <td>{{price}} €</td>
+        <td>{{stock}}</td>
+        <td>{{#if active}}Sí{{else}}No{{/if}}</td>
+        <td class="acciones">
+            <form action="/productes/editar" method="GET" style="display: inline;">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit" class="editar">Editar</button>
+            </form>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+<div style="margin-left:20px;">
+    {{#if pagina}}
+        <a href="/productes?pagina={{dec pagina}}&cerca={{cerca}}">Anterior</a>
+    {{/if}}
+
+    <a href="/productes?pagina={{inc pagina}}&cerca={{cerca}}">Següent</a>
+</div>

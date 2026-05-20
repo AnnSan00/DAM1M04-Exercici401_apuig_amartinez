@@ -1,0 +1,57 @@
+<!-- ==========================================
+     AFEGIR PRODUCTE
+========================================== -->
+
+<h2>Afegir producte</h2>
+
+
+<!-- ==========================
+     FORMULARIO
+========================== -->
+
+<form action="/productes/create" method="POST" onsubmit="return validarForm()">
+
+    <!-- NOM -->
+    <div>
+        <label>Nom:</label><br>
+        <input type="text" id="nom" name="nom" required>
+    </div>
+
+
+    <!-- CATEGORIA -->
+    <div>
+        <label>Categoria:</label><br>
+        <input type="text" id="categoria" name="categoria" required>
+    </div>
+
+
+    <!-- PREU -->
+    <div>
+        <label>Preu (€):</label><br>
+        <input type="number" id="preu" name="preu" step="0.01" required>
+    </div>
+
+
+    <!-- STOCK -->
+    <div>
+        <label>Stock:</label><br>
+        <input type="number" id="stock" name="stock" required>
+    </div>
+
+
+    <!-- ACTIU -->
+    <div>
+        <label>
+            <input type="checkbox" name="active" checked>
+            Actiu
+        </label>
+    </div>
+
+
+    <!-- BOTONES -->
+    <div style="margin-top: 15px;">
+        <button type="submit">Guardar</button>
+        <a href="/productes">Cancel·lar</a>
+    </div>
+
+</form>

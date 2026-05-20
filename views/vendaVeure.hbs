@@ -1,0 +1,34 @@
+<h1>Detalls de la venda</h1>
+
+<section style="width:90%; margin:auto; background:white; padding:20px; border-radius:10px;">
+
+    <h2>Informació general</h2>
+    <p><strong>ID venda:</strong> {{sale.id}}</p>
+    <p><strong>Client:</strong> {{sale.client_name}}</p>
+    <p><strong>Data:</strong> {{sale.sale_date}}</p>
+    <p><strong>Total:</strong> {{sale.total}} €</p>
+
+    <h2>Línies de venda</h2>
+
+    <table>
+        <tr>
+            <th>Producte</th>
+            <th>Quantitat</th>
+            <th>Preu unitari</th>
+            <th>Total línia</th>
+        </tr>
+
+        {{#each items}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{qty}}</td>
+            <td>{{unit_price}} €</td>
+            <td>{{line_total}} €</td>
+        </tr>
+        {{/each}}
+    </table>
+
+    <br>
+    <a href="/vendes" class="btn editar">Tornar</a>
+
+</section>

@@ -1,0 +1,33 @@
+<h1>Editar producte</h1>
+
+<form action="/productes/update" method="POST">
+  <input type="hidden" name="id" value="{{product.id}}">
+
+  <label>Nom:</label>
+  <input type="text" name="nom" value="{{product.name}}" required>
+
+  <label>Categoria:</label>
+  <input type="text" name="categoria" value="{{product.category}}" required>
+
+  <label>Preu:</label>
+  <input type="number" name="preu" value="{{product.price}}" step="0.01" required>
+
+  <label>Stock:</label>
+  <input type="number" name="stock" value="{{product.stock}}" min="0" required>
+
+  <label>Actiu:</label>
+  <select name="active">
+    <option value="1" {{#if product.active}}selected{{/if}}>Sí</option>
+    <option value="0" {{#unless product.active}}selected{{/unless}}>No</option>
+  </select>
+
+  <button type="submit" class="editar">Guardar canvis</button>
+</form>
+
+<hr>
+
+<form action="/productes/delete" method="POST"
+      onsubmit="return confirm('Segur que vols ELIMINAR aquest producte? Aquesta acció és permanent.');">
+    <input type="hidden" name="id" value="{{product.id}}">
+    <button type="submit" class="eliminar">Eliminar producte</button>
+</form>

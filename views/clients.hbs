@@ -1,0 +1,87 @@
+<!-- ==========================================
+     LLISTAT CLIENTS
+========================================== -->
+
+<h2>Clients</h2>
+
+
+<!-- ==========================
+     BUSCADOR + FILTROS
+========================== -->
+
+<form method="GET" action="/clients">
+
+    <input type="text" name="cerca" placeholder="Buscar per nom o email" value="{{cerca}}">
+
+    <label>
+        <input type="checkbox" name="vip" value="1" {{#if vip}}checked{{/if}}>
+        Només VIP
+    </label>
+
+    <button type="submit">Buscar</button>
+
+</form>
+
+
+<!-- ==========================
+     BOTÓN AÑADIR
+========================== -->
+
+<div style="margin: 20px;">
+    <a href="/clients/afegir">➕ Nou client</a>
+</div>
+
+
+<!-- ==========================
+     TABLA CLIENTES
+========================== -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Telèfon</th>
+            <th># Compres</th>
+            <th>Accions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each clients}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td>{{compres}}</td>
+
+            <td>
+                <a href="/clients/fitxa?id={{id}}">Veure</a> |
+                <a href="/clients/editar?id={{id}}">Editar</a>
+
+                <form action="/clients/delete" method="POST" style="display:inline;" onsubmit="return confirmarEliminar()">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+<!-- ==========================
+     PAGINACIÓN
+========================== -->
+
+<div style="margin: 20px;">
+
+    {{#if pagina}}
+        <a href="/clients?pagina={{dec pagina}}&cerca={{cerca}}">← Anterior</a>
+    {{/if}}
+
+    <span> Pàgina {{pagina}} </span>
+
+    <a href="/clients?pagina={{inc pagina}}&cerca={{cerca}}">Siguiente →</a>
+
+</div>

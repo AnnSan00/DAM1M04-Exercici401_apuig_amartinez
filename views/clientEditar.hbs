@@ -1,0 +1,25 @@
+<h1>Editar client</h1>
+<p>{{client.name}}</p>
+
+<form action="/clients/update" method="POST">
+    <input type="hidden" name="id" value="{{client.id}}">
+
+    <label>Nom:</label>
+    <input type="text" name="nom" value="{{client.name}}" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" value="{{client.email}}" required>
+
+    <label>Telèfon:</label>
+    <input type="tel" name="phone" value="{{client.phone}}" required>
+
+    <button type="submit" class="editar">Guardar canvis</button>
+</form>
+
+<hr>
+
+<form action="/clients/delete" method="POST" 
+      onsubmit="return confirm('Segur que vols INACTIVAR aquest client?');">
+    <input type="hidden" name="id" value="{{client.id}}">
+    <button type="submit" class="eliminar">Inactivar client</button>
+</form>

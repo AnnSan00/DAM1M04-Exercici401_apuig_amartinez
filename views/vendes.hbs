@@ -1,0 +1,61 @@
+<!-- ==========================================
+     LLISTAT VENDES
+========================================== -->
+
+<h2>Vendes</h2>
+
+
+<!-- ==========================
+     BOTÓN AÑADIR
+========================== -->
+
+<div style="margin: 20px;">
+    <a href="/vendes/afegir">➕ Nova venda</a>
+</div>
+
+
+<!-- ==========================
+     TABLA VENDES
+========================== -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Client</th>
+            <th>Total (€)</th>
+            <th>Accions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each vendes}}
+        <tr>
+            <td>{{sale_date}}</td>
+            <td>{{client_name}}</td>
+            <td>{{total}}</td>
+
+            <td>
+                <a href="/vendes/veure?id={{id}}">Veure</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+<!-- ==========================
+     PAGINACIÓN
+========================== -->
+
+<div style="margin: 20px;">
+
+    {{#if pagina}}
+        <a href="/vendes?pagina={{dec pagina}}">← Anterior</a>
+    {{/if}}
+
+    <span> Pàgina {{pagina}} </span>
+
+    <a href="/vendes?pagina={{inc pagina}}">Següent →</a>
+
+</div>
